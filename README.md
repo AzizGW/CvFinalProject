@@ -20,7 +20,7 @@ The execution of the experiments was straightforward in terms of technical compl
 
 ### 2.3. Categories of Stress Testing
 The stress testing encompassed evaluations across all three original categories:
-1. **Adj/Noun Subspace Projection**: This test examined how well the model could handle and differentiate between adjectives and nouns in generating images that accurately reflect the described attributes and objects. In addition, how the model handels a prompt with multiple adjuctives.
+1. **Adj/Noun Subspace Projection**: This test examined how well the model could handle and differentiate between adjectives and nouns in generating images that accurately reflect the described attributes and objects. In addition, how the model handels a prompt with multiple adjuctives (coordinate adjectives).
 2. **Style-Blocking Adjective Projection**: In this category, the focus was on the model’s ability to block out specific stylistic adjectives from influencing the visual output.
 3. **Custom Subspace Projection**: Two custom subspaces—'fire' and 'interstellar'—were added to the dectionary.
 
