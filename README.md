@@ -166,6 +166,15 @@ The Adj/Noun Subspace Projection was designed to evaluate the model's ability to
 "A photo of green grass" and "A photo of a snowy mountain": Both showed a failure to ignore the nouns and adjectives respectively.
 
 More results below:
+
+<img width="648" alt="Screenshot 2024-05-05 at 18 18 28" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ce71be8c-6a8c-45c0-a118-e6e95e97f9dd">
+
+
+<img width="651" alt="Screenshot 2024-05-05 at 18 18 50" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/182ef6ec-26c5-4e7d-9da9-2e7ece6f23da">
+
+<img width="649" alt="Screenshot 2024-05-05 at 18 19 43" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/5f12340b-f0dd-4af5-880f-a3ba71bbd29b">
+
+
 <img width="1179" alt="Screenshot 2024-04-25 at 16 44 54" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/47949e76-faec-4671-b5a8-ac0881999532">
 
 <img width="1221" alt="Screenshot 2024-04-25 at 16 44 24" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ab3baa22-77be-426c-ad17-070f842ed7fd">
