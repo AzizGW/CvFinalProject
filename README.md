@@ -67,6 +67,46 @@ The stress testing encompassed evaluations across all three original categories:
         ]))
     }
 
+### 2.5. Adj-Noun Overlap Assessment
+To investigate the overlap between nouns and adjectives within subspace, I employed a method involving the projection of words embeddings (for both adjs and nouns) onto a noun subspace followed by the evaluation of cosine similarities. This approach aims to identify pairs of adjectives and nouns that, despite their distinct categorical attributes, share a high degree of similarity in their vector representations when viewed within the confines of the noun subspace. Moreover, each embedding vector, representing nouns **(N)** and adjectives **(A)**, was first normalized to unit length to standardize their magnitudes, facilitating a fair comparison. These normalized vectors were then projected onto the noun subspace **(WN)**, calculated as the matrix product of the noun embeddings and their transpositions, resulting with vectors **N_in_N** for nouns and **A_in_N** for adjectives.
+
+#### 2.5.1. Cosine Similarity Calculation
+```
+def find_high_similarity_pairs(N, A, WN, threshold=0.90):
+    # Normalize the embeddings
+    N_norm = N / N.norm(dim=1, keepdim=True)
+    A_norm = A / A.norm(dim=1, keepdim=True)
+
+    # Project both nouns and adjectives onto the noun subspace
+    N_in_N = torch.mm(N_norm, torch.mm(WN, WN.transpose(0, 1)))
+    A_in_N = torch.mm(A_norm, torch.mm(WN, WN.transpose(0, 1)))
+
+    # Renormalize projections
+    N_in_N = N_in_N / N_in_N.norm(dim=1, keepdim=True)
+    A_in_N = A_in_N / A_in_N.norm(dim=1, keepdim=True)
+
+    # Calculate cosine similarities
+    cosine_similarities = torch.mm(N_in_N, A_in_N.t())
+
+    # Filter pairs with cosine similarity over the threshold
+    high_sim_indices = torch.where(cosine_similarities > threshold)
+    return high_sim_indices, cosine_similarities
+```
+Post-projection, cosine similarities were computed between all noun and adjective vectors now represented in the noun subspace. Pairs exhibiting similarities above a defined threshold (e.g., 0.90) were saved for further analysis. This high threshold was set to ensure only the most similar pairs were considered, aiming to capture those adjective-noun combinations that, unexpectedly, align closely within a noun-centric semantic field.
+
+#### 2.5.2. Sentiment Analysis
+
+```
+from transformers import pipeline
+sentiment_classifier = pipeline('sentiment-analysis')
+def get_sentiment(word):
+    result = sentiment_classifier(word)
+    sentiment = result[0]['label'].lower()
+    return sentiment
+```
+
+To add a layer of interpretative depth to the findings, I integrated sentiment analysis into the examination of adjective-noun pairs. Utilizing pre-defined sentiment analysis tool (as shown above), each word in the identified pairs was classified as positive, negative, or neutral. This classification is used to understand whether the semantic similarity also extended to some connotations, which could be pivotal in nuanced linguistic or contextual applications.
+
 
 ## 3. Results
 ### 3.1. Baseline Results
@@ -178,9 +218,176 @@ The model effectively blocked the fire theme from all images in the prompts abov
 ### 3.5. Results Summary
 The test results reveal that while the model shows some capability to adhere to the framework of subspace projections, there are notable inconsistencies and failures, particularly in handling complex, multi-component, coordinate adjectives prompts. These issues highlight the need for further refinement and possibly more sophisticated training or projection mechanisms to achieve reliable disentanglement of visual attributes as claimed.
 
-## 4. Conclusion 
+## 4. Results Analysis
 
-The evaluation of "Parts of Speech–Grounded Subspaces in Vision-Language Models" reveals that while the model conceptually promises to disentangle visual attributes based on linguistic inputs, it struggles with consistent execution, especially with complex prompts. In tests like Adj/Noun Subspace Projection and Style-Blocking Adjective Projection, the model occasionally succeeded but often failed to accurately manage and block visual attributes as claimed. This inconsistency poses significant challenges for its application in professional environments that demand high precision.
+
+![sssss](https://github.com/AzizGW/CvFinalProject/assets/119353586/f1dd16a9-0c77-4c9f-b729-1e62de5bffdb)
+
+### 4.1. Adj-Noun Overlap Sample output
+```
+unaffixed (negative) + tuxedo (positive) - Cosine Score: 0.95
+verrucose (negative) + pyroelectricity (positive) - Cosine Score: 0.96
+glossopharyngeal (negative) + direct examination (positive) - Cosine Score: 1.00
+ungarbed (negative) + Otto von Bismarck (positive) - Cosine Score: 1.00
+lxii (positive) + barium (negative) - Cosine Score: 1.00
+gregarious (positive) + St. Gregory of Nazianzen (negative) - Cosine Score: 1.00
+geosynchronous (positive) + systematist (positive) - Cosine Score: 1.00
+irritated (negative) + attendance check (positive) - Cosine Score: 0.98
+sightly (positive) + cerebellar hemisphere (negative) - Cosine Score: 1.00
+unpracticed (negative) + gasoline bomb (negative) - Cosine Score: 0.96
+gangling (negative) + great auk (positive) - Cosine Score: 1.00
+square-shouldered (positive) + razorback hog (negative) - Cosine Score: 1.00
+viscoelastic (positive) + relaxation (positive) - Cosine Score: 1.00
+aimless (negative) + June 23 (positive) - Cosine Score: 1.00
+out of true (positive) + Anigozanthus (positive) - Cosine Score: 1.00
+tripinnate (negative) + diaper rash (negative) - Cosine Score: 1.00
+sere (negative) + Richard II (positive) - Cosine Score: 0.96
+inscrutable (negative) + Myrtillocactus geometrizans (positive) - Cosine Score: 1.00
+stylish (positive) + Atriplex lentiformis (negative) - Cosine Score: 0.96
+barometrical (positive) + Trojan horse (negative) - Cosine Score: 0.95
+city-bred (positive) + Lepas (positive) - Cosine Score: 1.00
+on the fence (positive) + synergism (positive) - Cosine Score: 1.00
+satiable (positive) + Gypsy Rose Lee (positive) - Cosine Score: 0.96
+nursed (negative) + angiologist (negative) - Cosine Score: 0.96
+apopemptic (negative) + youth movement (positive) - Cosine Score: 0.95
+protuberant (positive) + stableman (positive) - Cosine Score: 1.00
+mass-spectrometric (positive) + niece (positive) - Cosine Score: 1.00
+telescoped (positive) + Didrikson (positive) - Cosine Score: 1.00
+in good taste (positive) + acoustic projection (positive) - Cosine Score: 0.96
+catadromous (negative) + marabou (positive) - Cosine Score: 0.98
+unadorned (negative) + Bruxelles (positive) - Cosine Score: 0.97
+stubby (negative) + dog flea (negative) - Cosine Score: 1.00
+hueless (negative) + photogelatin process (positive) - Cosine Score: 0.96
+forgettable (negative) + ballpoint pen (positive) - Cosine Score: 1.00
+6th (positive) + newsreader (negative) - Cosine Score: 0.95
+metastatic (negative) + Mount Olympus (positive) - Cosine Score: 1.00
+enceinte (positive) + trinitroglycerin (negative) - Cosine Score: 0.95
+burbling (negative) + channelisation (negative) - Cosine Score: 0.95
+dissonant (negative) + Calla palustris (negative) - Cosine Score: 0.95
+ratty (negative) + wiggle nail (positive) - Cosine Score: 1.00
+grimy (negative) + footwear (positive) - Cosine Score: 0.97
+unrhymed (negative) + Dien Bien Phu (positive) - Cosine Score: 1.00
+enclosed (positive) + Elli (positive) - Cosine Score: 0.97
+forty-seven (positive) + drainage basin (positive) - Cosine Score: 0.96
+purse-proud (positive) + Erigeron canadensis (positive) - Cosine Score: 0.97
+white-shoe (negative) + snowboarding (positive) - Cosine Score: 0.97
+deep-lobed (negative) + vertebrate foot (positive) - Cosine Score: 1.00
+300 (positive) + prankishness (negative) - Cosine Score: 1.00
+disappointed (negative) + infantile amaurotic idiocy (negative) - Cosine Score: 0.97
+mop-headed (negative) + banded palm civet (positive) - Cosine Score: 1.00
+in sight (positive) + Myrica pensylvanica (positive) - Cosine Score: 1.00
+witty (positive) + mucous secretion (negative) - Cosine Score: 0.98
+transgendered (negative) + genus Ipomoea (negative) - Cosine Score: 1.00
+inconsequential (negative) + swamp horsetail (negative) - Cosine Score: 1.00
+anal retentive (negative) + writing desk (negative) - Cosine Score: 0.97
+pissed off (negative) + jet set (positive) - Cosine Score: 1.00
+antrorse (negative) + dewberry bush (positive) - Cosine Score: 0.95
+encouraging (positive) + Mendelsohn (positive) - Cosine Score: 0.95
+moribund (negative) + bachelorette (positive) - Cosine Score: 0.96
+incognizable (negative) + good guy (positive) - Cosine Score: 1.00
+cumbersome (negative) + meadow rue (positive) - Cosine Score: 1.00
+spring-flowering (positive) + John Rowlands (positive) - Cosine Score: 1.00
+leptorrhine (negative) + pulassan (positive) - Cosine Score: 0.96
+sonsy (positive) + President Garfield (positive) - Cosine Score: 1.00
+subarctic (positive) + tumblebug (negative) - Cosine Score: 0.96
+purplish-white (negative) + chicken cacciatora (negative) - Cosine Score: 1.00
+wrapped (positive) + scrubbird (negative) - Cosine Score: 0.96
+grimy (negative) + footwear (positive) - Cosine Score: 0.97
+```
+
+### 4.2. Testing The Model Again
+
+<img width="971" alt="Screenshot 2024-05-05 at 17 47 16" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/53f58dc1-af54-4572-a3a6-829278687e8b">
+
+**1. "A photo of purplish-white chicken cacciatora"**: The model successfully executed both the noun subspace orthogonal projection and the adjective subspace orthogonal projection without any issues.
+
+<img width="971" alt="Screenshot 2024-05-05 at 17 47 35" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/acd9e4fc-9a1a-4e45-b428-86642ba4af0f">
+
+**2. "A photo of wrapped scrubbird"**: Similarly to the first example, the model successfully handled the orthogonal projection for both the noun "scrubbird" and the adjective "wrapped".
+<img width="971" alt="Screenshot 2024-05-05 at 17 48 06" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/7c1aa662-204a-4903-981a-ec19f3f287c7">
+
+**3. "A photo of grimy footwear"**: In this case, the model encountered difficulties specifically with the noun subspace orthogonal projection. It failed to effectively ignore the noun "footwear", resulting in some images where the noun was not correctly omitted. Conversely, in the adjective subspace orthogonal projection, the model generated images without the footwear.
+
+### 4.2. Sentiment Correlation and Threshold Impact
+The findings reveal a trend: as the cosine similarity threshold increases, so does the proportion of adjective-noun pairs sharing the same sentiment. This trend may suggests a potential alignment between semantic closeness and emotional congruence, indicating that overlaping pairs in a subspace are more likely to share the same sentiment (positive, neutral, or negative).To illustrate, at the highest observed threshold (cosine score = 1.0), 59.5% of the adj-noun pairs shared the same sentiment, demonstrating the strongest alignment both semantically and sentimentally. Moreover,this proportion remains relatively high with a slight decrease as the threshold lowers: 58.6% at >0.99, 57.8% at >0.98, and 56.1% at >0.97. The ratio continues to taper off as the threshold decreases, with 55.0% at >0.96 and exactly 50% at >0.95, reinforcing the observation that higher semantic alignment correlates with higher sentiment congruence. As I expand the scope to include pairs with lower semantic similarity (thresholds >0.90 and >0.85), the proportion of sentiment alignment drops further to 48.2% and 27.5%, respectively.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Threshold</th>
+                <th>Pairs with Similar Sentiments</th>
+                <th>Total Pairs</th>
+                <th>Ratio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>= 1.0</td>
+                <td>28</td>
+                <td>47</td>
+                <td>0.595</td>
+            </tr>
+            <tr>
+                <td>&gt; 0.99</td>
+                <td>54</td>
+                <td>92</td>
+                <td>0.586</td>
+            </tr>
+            <tr>
+                <td>&gt; 0.98</td>
+                <td>55</td>
+                <td>95</td>
+                <td>0.578</td>
+            </tr>
+            <tr>
+                <td>&gt; 0.97</td>
+                <td>64</td>
+                <td>114</td>
+                <td>0.561</td>
+            </tr>
+            <tr>
+                <td>&gt; 0.96</td>
+                <td>78</td>
+                <td>142</td>
+                <td>0.550</td>
+            </tr>
+            <tr>
+                <td>&gt; 0.95</td>
+                <td>98</td>
+                <td>196</td>
+                <td>0.500</td>
+            </tr>
+            <tr>
+                <td>&gt; 0.90</td>
+                <td>454</td>
+                <td>941</td>
+                <td>0.482</td>
+            </tr>
+            <tr>
+                <td>&gt; 0.85</td>
+                <td>963</td>
+                <td>3504</td>
+                <td>0.275</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+## 5. Conclusion 
+
+The evaluation of 'Parts of Speech–Grounded Subspaces in Vision-Language Models' reveals that while the model conceptually promises to disentangle visual attributes based on linguistic inputs, it struggles with consistent execution, particularly with complex prompts. In tests such as Adj/Noun Subspace Projection and Style-Blocking Adjective Projection, the model occasionally succeeded but often failed to accurately manage and block visual attributes as claimed. This inconsistency poses significant challenges for its application in professional environments that demand high precision.
+
+Despite these challenges, it is important to recognize that a deeper understanding of the model is required. However, due to limited time and computational resources, extensive testing and exploration were not feasible at this stage. It remains unclear why the model fails in certain instances with specific nouns or adjectives (other than the limitation mentioned in the paper), suggesting that further research is necessary to fully uncover and address these limitations.
+
 
 ## References
 1. Oldfield, J., Tzelepis, C., Panagakis, Y., Nicolaou, M., & Patras, I. (2023). Parts of Speech–Grounded Subspaces in Vision-Language Models. Advances in Neural Information Processing Systems, 36, 2700-2724.
