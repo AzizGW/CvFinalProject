@@ -73,23 +73,23 @@ To investigate the overlap between nouns and adjectives within subspace, I emplo
 #### 2.5.1. Cosine Similarity Calculation
 ```
 def find_high_similarity_pairs(N, A, WN, threshold=0.90):
-    # Normalize the embeddings
+    # normalize the embeddings
     N_norm = N / N.norm(dim=1, keepdim=True)
     A_norm = A / A.norm(dim=1, keepdim=True)
 
-    # Project both nouns and adjectives onto the noun subspace
+    # project both nouns and adjectives onto the noun subspace
     N_in_N = torch.mm(N_norm, torch.mm(WN, WN.transpose(0, 1)))
     A_in_N = torch.mm(A_norm, torch.mm(WN, WN.transpose(0, 1)))
 
-    # Renormalize projections
+    # renormalize projections
     N_in_N = N_in_N / N_in_N.norm(dim=1, keepdim=True)
     A_in_N = A_in_N / A_in_N.norm(dim=1, keepdim=True)
 
-    # Calculate cosine similarities
-    cosine_similarities = torch.mm(N_in_N, A_in_N.t())
+    cosine_similarities = torch.mm(N_in_N, A_in_N.t())     # calculate cosine similarities
 
-    # Filter pairs with cosine similarity over the threshold
-    high_sim_indices = torch.where(cosine_similarities > threshold)
+
+   
+    high_sim_indices = torch.where(cosine_similarities > threshold)  # filter pairs with cosine similarity over the threshold
     return high_sim_indices, cosine_similarities
 ```
 Post-projection, cosine similarities were computed between all noun and adjective vectors now represented in the noun subspace. Pairs exhibiting similarities above a defined threshold (e.g., 0.90) were saved for further analysis. This high threshold was set to ensure only the most similar pairs were considered, aiming to capture those adjective-noun combinations that, unexpectedly, align closely within a noun-centric semantic field.
