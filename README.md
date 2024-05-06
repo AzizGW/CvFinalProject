@@ -224,15 +224,17 @@ The model effectively blocked the fire theme from all images in the prompts abov
 
 "A plane going into a Black hole." the model showed images of bugs. Even though the word 'plane' was not in the interstellar part of the Custom Subspace dictionary, yet, it wasn't in the generated images.
 
-### 3.5. Results Summary
-The test results reveal that while the model shows some capability to adhere to the framework of subspace projections, there are notable inconsistencies and failures, particularly in handling complex, multi-component, coordinate adjectives prompts. These issues highlight the need for further refinement and possibly more sophisticated training or projection mechanisms to achieve reliable disentanglement of visual attributes as claimed.
 
 ## 4. Results Analysis
 
-
 ![sssss](https://github.com/AzizGW/CvFinalProject/assets/119353586/f1dd16a9-0c77-4c9f-b729-1e62de5bffdb)
 
-### 4.1. Adj-Noun Overlap Sample output
+All adjective-noun pairs visualized here have a cosine similarity of 0.95 or greater, meaning they are very close in the noun subspace. The spread and overlap of points could indicate complex relationships that are not readily discernible without considering higher-dimensional relationships. Moreover, the close proximity of many adjectives to nouns might suggest why the model occasionally fails to ignore nouns when intended, particularly if adjectives enhance or closely describe the noun features.
+
+Difficulty in Noun Ignorance: The proximity and overlap in the visualization suggest a reason why the model may struggle to ignore nouns in certain contexts, especially when adjectives closely describe or are semantically linked to those nouns. For example, adjectives from the results like "foggy", "hazy", or "smoggy" when paired with "forest" might be enhancing the noun's visual representation too much, making it challenging for the model to disregard "forest" during noun subspace orthogonal projections. Also, the distribution and clustering could hint at how visual and linguistic cues are intertwined in the model's representation, potentially affecting its ability to separate these cues during specific projection tasks.
+
+
+### 4.1. Adj + Noun Proximity/Overlap Sample output
 ```
 unaffixed (negative) + tuxedo (positive) - Cosine Score: 0.95
 verrucose (negative) + pyroelectricity (positive) - Cosine Score: 0.96
@@ -304,21 +306,21 @@ wrapped (positive) + scrubbird (negative) - Cosine Score: 0.96
 grimy (negative) + footwear (positive) - Cosine Score: 0.97
 ```
 
-### 4.2. Testing The Model Again
+### 4.2. Testing The Model Using [adj]-[noun] Pairs With High Similarity.
 
 <img width="971" alt="Screenshot 2024-05-05 at 17 47 16" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/53f58dc1-af54-4572-a3a6-829278687e8b">
 
-**1. "A photo of purplish-white chicken cacciatora"**: The model successfully executed both the noun subspace orthogonal projection and the adjective subspace orthogonal projection without any issues.
+**1. "A photo of purplish-white chicken cacciatora"**: The model successfully executed both the noun subspace orthogonal projection and the adjective subspace orthogonal projection. However, it's hard to visually differentiate between original and adjective subspace orth. projection.
 
 <img width="971" alt="Screenshot 2024-05-05 at 17 47 35" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/acd9e4fc-9a1a-4e45-b428-86642ba4af0f">
 
-**2. "A photo of wrapped scrubbird"**: Similarly to the first example, the model successfully handled the orthogonal projection for both the noun "scrubbird" and the adjective "wrapped".
+**2. "A photo of wrapped scrubbird"**: The model successfully handled the orthogonal projection for both the noun "scrubbird" and the adjective "wrapped".
 <img width="971" alt="Screenshot 2024-05-05 at 17 48 06" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/7c1aa662-204a-4903-981a-ec19f3f287c7">
 
 **3. "A photo of grimy footwear"**: In this case, the model encountered difficulties specifically with the noun subspace orthogonal projection. It failed to effectively ignore the noun "footwear", resulting in some images where the noun was not correctly omitted. Conversely, in the adjective subspace orthogonal projection, the model generated images without the footwear.
 
 ### 4.2. Sentiment Correlation and Threshold Impact
-The findings reveal a trend: as the cosine similarity threshold increases, so does the proportion of adjective-noun pairs sharing the same sentiment. This trend may suggests a potential alignment between semantic closeness and emotional congruence, indicating that overlaping pairs in a subspace are more likely to share the same sentiment (positive, neutral, or negative).To illustrate, at the highest observed threshold (cosine score = 1.0), 59.5% of the adj-noun pairs shared the same sentiment, demonstrating the strongest alignment both semantically and sentimentally. Moreover,this proportion remains relatively high with a slight decrease as the threshold lowers: 58.6% at >0.99, 57.8% at >0.98, and 56.1% at >0.97. The ratio continues to taper off as the threshold decreases, with 55.0% at >0.96 and exactly 50% at >0.95, reinforcing the observation that higher semantic alignment correlates with higher sentiment congruence. As I expand the scope to include pairs with lower semantic similarity (thresholds >0.90 and >0.85), the proportion of sentiment alignment drops further to 48.2% and 27.5%, respectively.
+The findings show a trend, as the cosine similarity threshold increases, so does the proportion of adjective-noun pairs sharing the same sentiment. This trend may suggests a potential alignment between semantic closeness and emotional congruence, indicating that overlaping pairs in a subspace are more likely to share the same sentiment (positive, neutral, or negative).To illustrate, at the highest observed threshold (cosine score = 1.0), 59.5% of the adj-noun pairs shared the same sentiment, demonstrating the strongest alignment both semantically and sentimentally. Moreover,this proportion remains relatively high with a slight decrease as the threshold lowers: 58.6% at >0.99, 57.8% at >0.98, and 56.1% at >0.97. The ratio continues to taper off as the threshold decreases, with 55.0% at >0.96 and exactly 50% at >0.95, reinforcing the observation that higher semantic alignment correlates with higher sentiment congruence. As I expand the scope to include pairs with lower semantic similarity (thresholds >0.90 and >0.85), the proportion of sentiment alignment drops further to 48.2% and 27.5%, respectively.
 
 <!DOCTYPE html>
 <html lang="en">
