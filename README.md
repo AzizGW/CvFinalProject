@@ -1,4 +1,4 @@
-# Final Project: Stress Testing a Paper From NeurIPS Titled "Parts of Speech–Grounded Subspaces in Vision-Language Models".
+# Project: Stress Testing a Paper From NeurIPS Titled "Parts of Speech–Grounded Subspaces in Vision-Language Models".
 
 ## 1. Introduction
 
