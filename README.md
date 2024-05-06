@@ -116,89 +116,89 @@ To ensure the integrity and functionality of the model, initial tests replicated
 
 **Result from the paper:**
 
-<img width="987" alt="Screenshot 2024-04-25 at 16 37 47" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/bfa3eb39-7799-4d40-bd83-6f5efcd8a093">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 37 47" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/bfa3eb39-7799-4d40-bd83-6f5efcd8a093">
 
 **Result from the test:**
 
-<img width="815" alt="Screenshot 2024-04-25 at 16 38 17" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/4b1ba195-4560-462d-8e20-8e0c503e2548">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 38 17" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/4b1ba195-4560-462d-8e20-8e0c503e2548">
 
 
 **Prompt 2**: "A photo of Karl Marx in a disney movie"
 
 **Result from the paper:**
-<img width="1199" alt="Screenshot 2024-04-25 at 16 39 35" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/720466a9-3a9c-4218-b1ad-1cd46a40ee31">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 39 35" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/720466a9-3a9c-4218-b1ad-1cd46a40ee31">
 
 
 **Result from the test:**
-<img width="1269" alt="Screenshot 2024-04-25 at 13 18 08" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/a288c918-bf19-4eb0-b52f-e9c3fdbf72e6">
+<img width="1179" alt="Screenshot 2024-04-25 at 13 18 08" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/a288c918-bf19-4eb0-b52f-e9c3fdbf72e6">
 
 ### 3.2. Adj/Noun Subspace Projection Results
 
 The Adj/Noun Subspace Projection was designed to evaluate the model's ability to segregate and selectively remove noun and adjective descriptors from the prompts provided. However, the results revealed some inconsistencies:
 
-<img width="825" alt="Screenshot 2024-04-25 at 16 40 22" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ab394064-a8cf-4a49-9493-b7db18999abb">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 40 22" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ab394064-a8cf-4a49-9493-b7db18999abb">
 
 "A photo of a green dying tree": The model still displayed images of trees under Noun subspace orthogonal projection, contrary to the claim that it successfully removes object content from embeddings. Moreover, the presence of green trees in the Adjective subspace orthogonal projection indicates a failure to disregard visual appearances, which should have been removed according to the model's specifications.
 
-<img width="810" alt="Screenshot 2024-04-25 at 16 40 42" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/0df4d50a-aff2-40ad-9705-fda90d5c3d0c">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 40 42" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/0df4d50a-aff2-40ad-9705-fda90d5c3d0c">
 
 "A photo of a blue rusty car": This test showed a partial success with the adjective "rusty" being depicted in both projections but failed to eliminate the color "blue" in the Adj subspace orthogonal projection and to eliminate the noun "car" in the noun subspace orthogonal projection.
 
-<img width="813" alt="Screenshot 2024-04-25 at 16 40 57" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/3548b7c6-aa93-4b28-9d39-9858d544ca69">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 40 57" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/3548b7c6-aa93-4b28-9d39-9858d544ca69">
 
 "A photo of an old rusty car": Similar to the previous example, the model did not effectively differentiate between the adjectives in either subspace projection, with "rusty" and "old" features still prominent. In addition, the "car" object shouldn't exist in the noun subspace orthogonal projection.
 
-<img width="815" alt="Screenshot 2024-04-25 at 16 41 18" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ef7b3548-8fa5-4b56-8a0d-0267881c46fb">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 41 18" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ef7b3548-8fa5-4b56-8a0d-0267881c46fb">
 
 "A photo of an old car": The failure to remove the noun "car" in the Noun subspace and the adjective "old" in the Adj. subspace orthogonal projection highlights a significant challenge in the model's processing capabilities.
 
-<img width="811" alt="Screenshot 2024-04-25 at 16 41 35" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/4da25fe0-7449-4298-8c4e-7dbda5df2805">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 41 35" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/4da25fe0-7449-4298-8c4e-7dbda5df2805">
 
 "A photo of a multicoloured car": (Just like the example from the paper but instead of "penguin" I used "car") The model inconsistently handled the adjective "multicoloured" in both projections, sometimes ignoring it but often retaining colorful elements. The same goes to the noun subspace orthogonal projection, the car (noun) still visible in some images.
 
-<img width="813" alt="Screenshot 2024-04-25 at 16 41 53" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/68a2c991-7dc1-444f-a89d-315a4d9b77c7">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 41 53" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/68a2c991-7dc1-444f-a89d-315a4d9b77c7">
 
 "A photo of snowy Big Apple": This test raised questions about the model's handling of compound nouns and adjectives, with neither "snowy" nor "Big Apple" being effectively ignored in their respective projections.
 
-<img width="809" alt="Screenshot 2024-04-25 at 16 42 31" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/772cefa5-b866-41ee-bfb8-d3700f3b4c00">
-<img width="809" alt="Screenshot 2024-04-25 at 16 42 48" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/27abdcd0-8148-439c-b3ef-d20d5d0db23b">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 42 31" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/772cefa5-b866-41ee-bfb8-d3700f3b4c00">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 42 48" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/27abdcd0-8148-439c-b3ef-d20d5d0db23b">
 
 "A photo of green grass" and "A photo of a snowy mountain": Both showed a failure to ignore the nouns and adjectives respectively.
 
 More results below:
 
-<img width="648" alt="Screenshot 2024-05-05 at 18 18 28" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ce71be8c-6a8c-45c0-a118-e6e95e97f9dd">
+<img width="1179" alt="Screenshot 2024-05-05 at 18 18 28" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ce71be8c-6a8c-45c0-a118-e6e95e97f9dd">
 
 
-<img width="651" alt="Screenshot 2024-05-05 at 18 18 50" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/182ef6ec-26c5-4e7d-9da9-2e7ece6f23da">
+<img width="1179" alt="Screenshot 2024-05-05 at 18 18 50" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/182ef6ec-26c5-4e7d-9da9-2e7ece6f23da">
 
-<img width="649" alt="Screenshot 2024-05-05 at 18 19 43" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/5f12340b-f0dd-4af5-880f-a3ba71bbd29b">
+<img width="1179" alt="Screenshot 2024-05-05 at 18 19 43" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/5f12340b-f0dd-4af5-880f-a3ba71bbd29b">
 
 
 <img width="1179" alt="Screenshot 2024-04-25 at 16 44 54" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/47949e76-faec-4671-b5a8-ac0881999532">
 
-<img width="1221" alt="Screenshot 2024-04-25 at 16 44 24" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ab3baa22-77be-426c-ad17-070f842ed7fd">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 44 24" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/ab3baa22-77be-426c-ad17-070f842ed7fd">
 
-<img width="811" alt="Screenshot 2024-04-25 at 16 43 12" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/5a3f6a5c-7c1d-4319-af8c-108d81984938">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 43 12" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/5a3f6a5c-7c1d-4319-af8c-108d81984938">
 
-<img width="816" alt="Screenshot 2024-04-25 at 16 43 23" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/35b3ea85-ac3d-4ffc-9ceb-1a4a0ef29c54">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 43 23" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/35b3ea85-ac3d-4ffc-9ceb-1a4a0ef29c54">
 
-<img width="820" alt="Screenshot 2024-04-25 at 16 43 32" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/6aad2372-0eea-4d1e-ad9e-d0d3525d3ad8">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 43 32" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/6aad2372-0eea-4d1e-ad9e-d0d3525d3ad8">
 
-<img width="815" alt="Screenshot 2024-04-25 at 16 43 51" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/31a76a60-f127-4884-b8b9-00bc5345fd8c">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 43 51" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/31a76a60-f127-4884-b8b9-00bc5345fd8c">
 
-<img width="815" alt="Screenshot 2024-04-25 at 16 44 03" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/4c0a47af-9093-455c-9212-a04f8ebadbf5">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 44 03" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/4c0a47af-9093-455c-9212-a04f8ebadbf5">
 
 
 ### 3.3. Style-Blocking Adjective Projection Results
 
 This section focused on the model's capability to block specific styles associated with adjectives in prompts:
 
-<img width="1052" alt="Screenshot 2024-04-25 at 16 45 37" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/08bf1cf0-ef85-4793-8342-94807d048065">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 45 37" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/08bf1cf0-ef85-4793-8342-94807d048065">
 
 "A red Gauguin painting of Einstein": The model successfully blocked the artistic style.
 
-<img width="852" alt="Screenshot 2024-04-25 at 16 45 51" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/0fb4194d-3054-4cfe-bb0e-8b27aa4655cb">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 45 51" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/0fb4194d-3054-4cfe-bb0e-8b27aa4655cb">
 
 "A circular painting of the Eiffel Tower in the style of Rothko": (The word 'circular' was added to the original prompt in the paper) While attempting to block the style, the model also  blocked the depiction of the Eiffel Tower, indicating an overextension of the style-blocking mechanism.
 
@@ -208,11 +208,11 @@ The introduction of custom themes like "Fire" and "Interstellar" was intended to
 
 
 #### Theme: Fire
-<img width="1084" alt="Screenshot 2024-04-25 at 16 46 24" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/4438d231-6784-433c-832d-a16a45419ee2">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 46 24" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/4438d231-6784-433c-832d-a16a45419ee2">
 
 1. "Ancient forest caught in a devastating wildfire, with flames reaching sky-high, illuminating the night."
 
-<img width="1070" alt="Screenshot 2024-04-25 at 16 46 54" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/60a30870-ffbe-40dd-aaa0-98cf38b03543">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 46 54" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/60a30870-ffbe-40dd-aaa0-98cf38b03543">
 
 2. "A medieval castle engulfed in fierce flames during a siege, with archers still firing arrows through the smoke and fire".
 
@@ -308,14 +308,14 @@ grimy (negative) + footwear (positive) - Cosine Score: 0.97
 
 ### 4.2. Testing The Model Using [adj]-[noun] Pairs With High Similarity.
 
-<img width="971" alt="Screenshot 2024-05-05 at 17 47 16" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/53f58dc1-af54-4572-a3a6-829278687e8b">
+<img width="1179" alt="Screenshot 2024-05-05 at 17 47 16" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/53f58dc1-af54-4572-a3a6-829278687e8b">
 
 **1. "A photo of purplish-white chicken cacciatora"**: The model successfully executed both the noun subspace orthogonal projection and the adjective subspace orthogonal projection. However, it's hard to visually differentiate between original and adjective subspace orth. projection.
 
-<img width="971" alt="Screenshot 2024-05-05 at 17 47 35" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/acd9e4fc-9a1a-4e45-b428-86642ba4af0f">
+<img width="1179" alt="Screenshot 2024-05-05 at 17 47 35" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/acd9e4fc-9a1a-4e45-b428-86642ba4af0f">
 
 **2. "A photo of wrapped scrubbird"**: The model successfully handled the orthogonal projection for both the noun "scrubbird" and the adjective "wrapped".
-<img width="971" alt="Screenshot 2024-05-05 at 17 48 06" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/7c1aa662-204a-4903-981a-ec19f3f287c7">
+<img width="1179" alt="Screenshot 2024-05-05 at 17 48 06" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/7c1aa662-204a-4903-981a-ec19f3f287c7">
 
 **3. "A photo of grimy footwear"**: In this case, the model encountered difficulties specifically with the noun subspace orthogonal projection. It failed to effectively ignore the noun "footwear", resulting in some images where the noun was not correctly omitted. Conversely, in the adjective subspace orthogonal projection, the model generated images without the footwear.
 
