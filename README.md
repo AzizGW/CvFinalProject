@@ -220,14 +220,14 @@ The model effectively blocked the fire theme from all images in the prompts abov
 
 #### Theme: Interstellar
 
-<img width="1044" alt="Screenshot 2024-04-25 at 16 47 34" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/1a683f87-788f-48f2-becc-16ff9b77f28f">
+<img width="1179" alt="Screenshot 2024-04-25 at 16 47 34" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/1a683f87-788f-48f2-becc-16ff9b77f28f">
 
 "A plane going into a Black hole." the model showed images of bugs. Even though the word 'plane' was not in the interstellar part of the Custom Subspace dictionary, yet, it wasn't in the generated images.
 
 
 ## 4. Results Analysis
 
-![sssss](https://github.com/AzizGW/CvFinalProject/assets/119353586/f1dd16a9-0c77-4c9f-b729-1e62de5bffdb)
+<img width="597" alt="Screenshot 2024-05-06 at 22 09 56" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/5bee77ef-7527-4632-b2a9-3edb2729e6ce"> ![sssss](https://github.com/AzizGW/CvFinalProject/assets/119353586/f1dd16a9-0c77-4c9f-b729-1e62de5bffdb)
 
 All adjective-noun pairs visualized here have a cosine similarity of 0.95 or greater, **meaning they are very close in the noun subspace**. The spread and overlap of points could indicate complex relationships that are not readily discernible without considering higher-dimensional relationships. Moreover, the close proximity of many adjectives to nouns might suggest why the model occasionally fails to ignore nouns when intended, particularly if adjectives enhance or closely describe the noun features.
 
