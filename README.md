@@ -310,11 +310,11 @@ grimy (negative) + footwear (positive) - Cosine Score: 0.97
 
 <img width="1179" alt="Screenshot 2024-05-05 at 17 47 16" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/53f58dc1-af54-4572-a3a6-829278687e8b">
 
-**1. "A photo of purplish-white chicken cacciatora"**: The model successfully executed both the noun subspace orthogonal projection and the adjective subspace orthogonal projection. However, it's hard to visually differentiate between original and adjective subspace orth. projection.
+**1. "A photo of purplish-white chicken cacciatora"**: The model succeed only in the noun subspace orth. projection, it's hard to visually differentiate between original and adjective subspace orth. projection.
 
 <img width="1179" alt="Screenshot 2024-05-05 at 17 47 35" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/acd9e4fc-9a1a-4e45-b428-86642ba4af0f">
 
-**2. "A photo of wrapped scrubbird"**: The model successfully handled the orthogonal projection for both the noun "scrubbird" and the adjective "wrapped".
+**2. "A photo of wrapped scrubbird"**: The model successfully handled the orth. projection for both the noun "scrubbird" and the adjective "wrapped".
 <img width="1179" alt="Screenshot 2024-05-05 at 17 48 06" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/7c1aa662-204a-4903-981a-ec19f3f287c7">
 
 **3. "A photo of grimy footwear"**: In this case, the model encountered difficulties specifically with the noun subspace orthogonal projection. It failed to effectively ignore the noun "footwear", resulting in some images where the noun was not correctly omitted. Conversely, in the adjective subspace orthogonal projection, the model generated images without the footwear.
