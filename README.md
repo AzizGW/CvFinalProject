@@ -1,4 +1,4 @@
-# Project: Stress Testing a Paper From NeurIPS Titled "Parts of Speech–Grounded Subspaces in Vision-Language Models".
+# Project: Stress Testing a Paper From NeurIPS Titled "Parts of Speech–Grounded Subspaces in Vision-Language Models".[![arXiv](https://img.shields.io/badge/arXiv-2305.14053-red)](https://arxiv.org/abs/2305.14053)
 
 ## 1. Introduction
 
