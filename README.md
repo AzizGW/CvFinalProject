@@ -322,7 +322,7 @@ grimy (negative) + footwear (positive) - Cosine Score: 0.97
 ### 4.2. Sentiment Correlation and Threshold Impact
 The findings show a trend, as the cosine similarity threshold increases, so does the proportion of adjective-noun pairs sharing the same sentiment. This trend may suggests a potential alignment between semantic closeness and emotional congruence, indicating that overlaping pairs in a subspace are more likely to share the same sentiment (positive, neutral, or negative).To illustrate, at the highest observed threshold (cosine score = 1.0), 59.5% of the adj-noun pairs shared the same sentiment, demonstrating the strongest alignment both semantically and sentimentally. Moreover,this proportion remains relatively high with a slight decrease as the threshold lowers: 58.6% at >0.99, 57.8% at >0.98, and 56.1% at >0.97. The ratio continues to taper off as the threshold decreases, with 55.0% at >0.96 and exactly 50% at >0.95, reinforcing the observation that higher semantic alignment correlates with higher sentiment congruence. As I expand the scope to include pairs with lower semantic similarity (thresholds >0.90 and >0.85), the proportion of sentiment alignment drops further to 48.2% and 27.5%, respectively.
 
-<img width="597" alt="Screenshot 2024-05-07 at 14 26 33" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/83a0e262-f7aa-49fb-ae99-ede304b3340c">
+<img width="597" alt="Screenshot 2024-05-07 at 15 45 09" src="https://github.com/AzizGW/CvFinalProject/assets/119353586/fa8c9352-5246-4b6e-bcec-3f7057d60cf5">
 
 <!DOCTYPE html>
 <html lang="en">
