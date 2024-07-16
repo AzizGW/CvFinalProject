@@ -1,6 +1,6 @@
 # Project: Stress Testing a Paper From NeurIPS Titled "Parts of Speech–Grounded Subspaces in Vision-Language Models".[![arXiv](https://img.shields.io/badge/arXiv-2305.14053-red)](https://arxiv.org/abs/2305.14053)
 
-## 1. Introduction
+## 1. Introduction.
 
 ### 1.1. Original Paper Brief Description
 Oldfield et al., (2023) introduced an innovative approach to enhancing vision-language models by structuring latent image representations around the linguistic concept of parts of speech (PoS). Specifically, it addresses the challenge of entanglement in visual attributes within CLIP image representations, which often leads to biases toward certain visual properties like objects or actions. The authors propose a method to disentangle these representations by associating different visual modalities with specific parts of speech (PoS), such as nouns with objects and adjectives with appearances. The effectiveness of this approach is demonstrated in the paper through both qualitative and quantitative evaluations. 
